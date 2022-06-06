@@ -74,7 +74,6 @@ class Form extends React.Component {
     handleBlur = ({ target: { name, value } }) => this.handleValidations(name, value);
 
     handleInputData = ({ target: { name, value }}) => {
-
         if(name === 'card'){
             let mask = value.split(' ').join('');
             if(mask.length) {
@@ -119,6 +118,11 @@ class Form extends React.Component {
             }
         });
         this.setState({ error: errorValue});
+        Object.keys(cardData).forEach((val) => {
+            if (cardData[val].length) {
+                this.handleValidations(val, cardData[val]);
+            }
+        })
         return isError;
     }
 
